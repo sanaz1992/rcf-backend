@@ -18,9 +18,10 @@ class AnswerRepository
 
     public function store(Request $request)
     {
-        Thread::find($request->thread_id)->answers()->create([
+         Answer::create([
             'content' => $request->input('content'),
-            'user_id' => auth()->id()
+            'thread_id' => $request->input('thread_id'),
+            'user_id' => auth()->user()->id
         ]);
     }
 
