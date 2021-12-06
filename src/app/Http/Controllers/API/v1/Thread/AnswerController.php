@@ -47,7 +47,7 @@ class AnswerController extends Controller
         // Get User Instance From Id
         $notifiable_users = resolve(UserRepository::class)->find($notifiable_users_id);
         // Send NewReplySubmitted Notification To Subscribed Users
-        Notification::send($notifiable_users, new NewReplySubmitted(Thread::find($request->thread_id)));
+        Notification::send($notifiable_users, new NewReplySubmitted(resolve(ThreadRepository::class)->find($request->thread_id)));
 
         // Increase User Score
         if (Thread::find($request->input('thread_id'))->user_id !== auth()->id()) {
