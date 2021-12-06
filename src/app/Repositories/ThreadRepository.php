@@ -22,6 +22,11 @@ class ThreadRepository
     {
         return Thread::whereSlug($slug)->whereFlag(1)->with(['channel', 'user', 'answers', 'answers.user:id,name'])->first();
     }
+    
+    public function find($id)
+    {
+        return Thread::find($id);
+    }
 
     public function store(Request $request)
     {
